@@ -673,6 +673,10 @@ class BuildScriptInvocation(object):
         builder.add_product(products.WasmLLVMRuntimeLibs,
                             is_enabled=self.args.build_wasmstdlib)
 
+        builder.add_product(products.SwiftPlaygroundMacros,
+                            is_enabled=self.args.build_swift_playground_macros)
+#        builder.add_product(products.SwiftPlayground,
+#                            is_enabled=self.args.build_swift_playground)
         builder.add_product(products.SwiftTestingMacros,
                             is_enabled=self.args.build_swift_testing_macros)
         builder.add_product(products.SwiftTesting,

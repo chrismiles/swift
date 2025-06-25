@@ -31,6 +31,7 @@ from .sourcekitlsp import SourceKitLSP
 from .staticswiftlinux import StaticSwiftLinuxConfig
 from .stdlib_docs import StdlibDocs
 from .swift import Swift
+from .swift_playground_macros import SwiftPlaygroundMacros
 from .swift_testing import SwiftTesting
 from .swift_testing_macros import SwiftTestingMacros
 from .swiftdocc import SwiftDocC
