@@ -829,6 +829,10 @@ def create_argument_parser():
     option(['--wasmkit'], toggle_true('build_wasmkit'),
            help='build WasmKit')
 
+    option('--swift-playgrounds', toggle_true('build_swift_playgrounds'),
+           help='build Swift Playgrounds')
+    option('--install-swift-playgrounds', toggle_true('install_swift_playgrounds'),
+           help='install Swift Playgrounds')
     option('--swift-playground-macros', toggle_true('build_swift_playground_macros'),
            help='build Swift Playground macro plugin')
     option('--install-swift-playground-macros',

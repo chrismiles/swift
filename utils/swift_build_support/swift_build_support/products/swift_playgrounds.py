@@ -1,4 +1,4 @@
-# swift_build_support/products/swift_playground_macros.py ----------*- python -*-
+# swift_build_support/products/swift_playgrounds.py -----------------*- python -*-
 #
 # This source file is part of the Swift.org open source project
 #
@@ -17,10 +17,11 @@ from build_swift.build_swift.versions import Version
 from . import cmake_product
 from . import product
 from . import swift
+from . import swift_playground_macros
 from .. import shell
 
 
-class SwiftPlaygroundMacros(product.Product):
+class SwiftPlaygrounds(product.Product):
     @classmethod
     def is_build_script_impl_product(cls):
         return False
@@ -31,11 +32,12 @@ class SwiftPlaygroundMacros(product.Product):
 
     @classmethod
     def product_source_name(cls):
-        return "swift-playgrounds/Sources/PlaygroundMacros"
+        return "swift-playgrounds"
 
     @classmethod
     def get_dependencies(cls):
-        return [swift.Swift]
+        return [swift.Swift,
+                swift_playground_macros.SwiftPlaygroundMacros]
 
     def should_clean(self, host_target):
         # Workaround for 'swift-playgrounds' not detecting compiler/stdlib changes.
@@ -45,17 +47,18 @@ class SwiftPlaygroundMacros(product.Product):
         return True
 
     def should_test(self, host_target):
+        # TODO: Implement.
         return False
 
     def should_install(self, host_target):
-        return self.args.install_swift_playground_macros
+        return self.args.install_swift_playgrounds
 
     def _cmake_product(self, host_target):
         build_root = os.path.dirname(self.build_dir)
         build_dir = os.path.join(
             build_root, '%s-%s' % (self.product_name(), host_target))
 
-        return SwiftPlaygroundMacrosCMakeShim(
+        return SwiftPlaygroundsCMakeShim(
             args=self.args,
             toolchain=self.toolchain,
             source_dir=self.source_dir,
@@ -89,7 +92,7 @@ class SwiftPlaygroundMacros(product.Product):
         self._for_each_host_target(host_target, self._install_with_cmake)
 
 
-class SwiftPlaygroundMacrosCMakeShim(cmake_product.CMakeProduct):
+class SwiftPlaygroundsCMakeShim(cmake_product.CMakeProduct):
     def clean(self, host_target):
         shell.rmtree(self.build_dir)
 
@@ -99,17 +102,18 @@ class SwiftPlaygroundMacrosCMakeShim(cmake_product.CMakeProduct):
             if Version(self.args.darwin_deployment_version_osx) < Version('10.15'):
                 override_deployment_version = '10.15'
 
+        build_shared_libs = not host_target.startswith('wasi')
+        self.cmake_options.define('BUILD_SHARED_LIBS',
+                                  'TRUE' if build_shared_libs else 'FALSE')
+
         # Use empty CMake install prefix, since the `DESTDIR` env var is set by
         # `install_with_cmake` later which already has the same prefix.
         self.cmake_options.define('CMAKE_INSTALL_PREFIX', '')
 
         self.cmake_options.define('CMAKE_BUILD_TYPE', self.args.build_variant)
 
-        build_root = os.path.dirname(self.build_dir)
-        swift_build_dir = os.path.join(
-            '..', build_root, '%s-%s' % ('swift', host_target))
-        swift_cmake_dir = os.path.join(swift_build_dir, 'cmake', 'modules')
-        self.cmake_options.define('SwiftSyntax_DIR:PATH', swift_cmake_dir)
+        # FIXME: If we build macros for the builder, specify the path.
+        self.cmake_options.define('SwiftPlayground_MACRO', 'NO')
 
         self.generate_toolchain_file_for_darwin_or_linux(
             host_target, override_macos_deployment_version=override_deployment_version)

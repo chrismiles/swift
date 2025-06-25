@@ -17,7 +17,6 @@ from build_swift.build_swift.versions import Version
 from . import cmake_product
 from . import product
 from . import swift
-from . import swift_playground_macros
 from . import swift_testing_macros
 from .. import shell
 
@@ -38,7 +37,7 @@ class SwiftTesting(product.Product):
     @classmethod
     def get_dependencies(cls):
         return [swift.Swift,
-                swift_testing_macros.SwiftPlaygroundMacros]
+                swift_testing_macros.SwiftTestingMacros]
 
     def should_clean(self, host_target):
         # Workaround for 'swift-testing' not detecting compiler/stdlib changes.
