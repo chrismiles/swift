@@ -42,6 +42,8 @@
             "remote": { "id": "apple/swift-system" } },
         "swift-stress-tester": {
             "remote": { "id": "swiftlang/swift-stress-tester" } },
+        "swift-play-experimental": {
+            "remote": { "id": "apple/swift-play-experimental" } },
         "swift-testing": {
             "remote": { "id": "swiftlang/swift-testing" } },
         "swift-corelibs-xctest": {
@@ -153,6 +155,7 @@
                 "swift-syntax": "main",
                 "swift-system": "1.5.0",
                 "swift-stress-tester": "main",
+                "swift-play-experimental": "chrismiles/cmake_support",
                 "swift-testing": "main",
                 "swift-corelibs-xctest": "main",
                 "swift-corelibs-foundation": "main",

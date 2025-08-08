@@ -677,6 +677,10 @@ class BuildScriptInvocation(object):
                             is_enabled=self.args.build_swift_testing_macros)
         builder.add_product(products.SwiftTesting,
                             is_enabled=self.args.build_swift_testing)
+        builder.add_product(products.SwiftPlaygrounds,
+                           is_enabled=self.args.build_swift_playgrounds)
+        builder.add_product(products.SwiftPlaygroundMacros,
+                            is_enabled=self.args.build_swift_playground_macros)
         builder.add_product(products.SwiftPM,
                             is_enabled=self.args.build_swiftpm)
 
