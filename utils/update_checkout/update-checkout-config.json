@@ -35,7 +35,7 @@
         "swift-tools-support-core": {
             "remote": { "id": "swiftlang/swift-tools-support-core" } },
         "swiftpm": {
-            "remote": { "id": "swiftlang/swift-package-manager" } },
+            "remote": { "id": "chrismiles/swift-package-manager" } },
         "swift-syntax": {
             "remote": { "id": "swiftlang/swift-syntax" } },
         "swift-system": {
@@ -141,7 +141,7 @@
                 "swift-build": "main",
                 "swift-toolchain-sqlite": "1.0.1",
                 "swift-tools-support-core": "main",
-                "swiftpm": "main",
+                "swiftpm": "eng/chrismiles/swift-play-prototype",
                 "swift-argument-parser": "1.5.1",
                 "swift-atomics": "1.2.0",
                 "swift-collections": "1.1.6",
