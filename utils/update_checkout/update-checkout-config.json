@@ -3,7 +3,7 @@
     "https-clone-pattern": "https://github.com/%s.git",
     "repos" : {
         "swift": {
-            "remote": { "id": "swiftlang/swift" } },
+            "remote": { "id": "chrismiles/swift" } },
         "cmark": {
             "remote": { "id": "swiftlang/swift-cmark" } },
         "llbuild": {
@@ -135,7 +135,7 @@
             "repos": {
                 "llvm-project": "stable/20240723",
                 "swift-llvm-bindings": "stable/20240723",
-                "swift": "main",
+                "swift": "chrismiles/playground_macro_in_toolchain",
                 "cmark": "gfm",
                 "llbuild": "main",
                 "swift-build": "main",
