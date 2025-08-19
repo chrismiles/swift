@@ -155,7 +155,7 @@
                 "swift-syntax": "main",
                 "swift-system": "1.5.0",
                 "swift-stress-tester": "main",
-                "swift-play-experimental": "chrismiles/cmake_support",
+                "swift-play-experimental": "main",
                 "swift-testing": "main",
                 "swift-corelibs-xctest": "main",
                 "swift-corelibs-foundation": "main",
